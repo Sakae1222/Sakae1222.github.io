@@ -1,5 +1,7 @@
-🗾来日本的第六年，社畜人生第二年。
+🗾6th year in Japan, 2nd year of my corporate slave life.
 
-💻近期开始学习编程，只为丰富一下人生经历。
+💻Recently started learning programming—just to enrich my life a bit.
 
-🐟日常工作量极少，为了避免boreout，在这里记录一些（真）摸鱼日常。
+🐟My daily workload is minimal, so to avoid boreout, I’m documenting some *real* low-effort moments here.
+
+✍️Also using this as a way to practice English.
