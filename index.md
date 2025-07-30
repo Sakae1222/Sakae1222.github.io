@@ -1,5 +1,15 @@
-Here you can say lots of fun things about your site.
+🗓️ **0730  今天也没什么工作的样子。**
 
-Maybe say a some things about yourself.
+🚰 09:00 接一杯水，开始摸鱼。
 
-Or maybe what you plan to blog about.
+💡 因为觉得可以在职学习技术，尤其是视频剪辑技术，我打算今天看一点[语法书](https://llwslc.github.io/grammar-club/content/Chapter04.html)之后就学剪辑✂
+
+💭 老板真的好烦啊，谁的话都要接一句，显得自己很能一样。。。
+
+📸 书看到一半去看周末拍的模特的照片了，有点好看！
+
+🚾 10:35 去接水顺便上个厕所
+
+🖨️ 回来打印了一份初版万博说明会资料给老板，继续看语法
+
+💬 和gpt探讨策略性留职我可以为自己做的事（学习编程做副业
