@@ -1,7 +1,7 @@
-## 这是我第一次发博客
+## This is my first blog
 
-好久之前摸鱼冲浪的时候搜到的这个url里竟然是这么惊天的内容！
+I stumbled across [this URL](https://chadbaldwin.net/2021/03/14/how-to-build-a-sql-blog.html) last year while slacking off online, and who would've thought it contained something this incredible!
 
-这就是我的Blog 1.0 了！
+And so, here it is—my Blog 1.0!
 
-万分感谢互联网另一端的 Mr.Chad ，为我的博客构建之路指明了方向。
+Huge thanks to Mr. [Chad](https://chadbaldwin.net/resume.html) on the other side of the internet, who pointed me in the right direction on my journey to building this blog.
