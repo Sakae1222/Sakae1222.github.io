@@ -1,4 +1,4 @@
-## This is my first blog
+## This is my first blog post!
 
 I stumbled across [this URL](https://chadbaldwin.net/2021/03/14/how-to-build-a-sql-blog.html) last year while slacking off online, and who would've thought it contained something this incredible!
 
