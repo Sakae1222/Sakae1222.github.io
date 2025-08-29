@@ -1,4 +1,4 @@
-![top](/images/top.jpg)
+<img src="/images/top.jpg" alt="top" width=800 height=1000>
 
 🗾6th year in Japan, 2nd year of my corporate slave life.
 
