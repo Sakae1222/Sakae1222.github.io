@@ -1,3 +1,5 @@
+![top](/images/top.jpg)
+
 🗾6th year in Japan, 2nd year of my corporate slave life.
 
 💻Recently started learning programming—just to enrich my life a bit.
