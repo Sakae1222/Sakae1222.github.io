@@ -1,4 +1,4 @@
-<img src="/images/top.jpg" alt="top" width=800 height=640>
+<img src="/images/top.jpg" alt="top" width=800 height=600>
 
 🗾6th year in Japan, 2nd year of my corporate slave life.
 
