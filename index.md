@@ -1,4 +1,4 @@
-<img src="/images/top.jpg" alt="top" width=800>
+<!-- <img src="/images/top.jpg" alt="top" width=800> -->
 
 # About me
 
