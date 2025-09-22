@@ -10,7 +10,6 @@ hr {
 /* Post navigation links */
 .post_navi {
   display: flex;
-  background-color:#b2a381;     /* my change 2025-09-22 */
 }
 
 .post_navi-label {
@@ -27,10 +26,12 @@ hr {
 
 .post_navi .nav_prev {
   text-align: left;
+  color: #B4A582;  /* my change 2025-09-22 */
 }
 
 .post_navi .nav_next {
   text-align: right;
+  color: #B4A582；  /* my change 2025-09-22 */
 }
 
 .post_navi .nav_prev .post_navi-arrow {
