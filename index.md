@@ -4,7 +4,8 @@
 
 🗾 ![Since](https://img.shields.io/badge/来日-7年目-yellow) 
 
-👩‍💼 2nd year of my corporate slave life.
+👩‍💼 ![Since](https://img.shields.io/badge/社畜-2年目-green) 
+    <!-- 2nd year of my corporate slave life. -->
 
 💻 Recently started learning programming—just to enrich my life a bit.
 
