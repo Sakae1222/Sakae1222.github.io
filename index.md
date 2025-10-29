@@ -2,7 +2,7 @@
 
 # About me
 
-<img src="/images/top.jpg" alt="Profile" align="right" width="200" style="margin: 0 0 20px 20px;">   <!-- 20251029 tried to add a photo -->
+<img src="/images/daruma.jpg" alt="Profile" align="right" width="200" style="margin: 0 0 20px 20px;">   <!-- 20251029 tried to add a photo -->
 
 🗾 ![Since](https://img.shields.io/badge/来日-7年目-yellow) 
 
