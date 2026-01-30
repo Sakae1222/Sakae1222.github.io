@@ -3,72 +3,116 @@ layout: page
 title: Archive
 ---
 
-<div class="archive-selector" style="margin-bottom: 20px;">
-  <button id="btn-tags" class="toggle-btn active" onclick="switchView('tags')">Tag</button>
-  <button id="btn-months" class="toggle-btn" onclick="switchView('months')">Month</button>
+<div class="archive-selector" style="margin-bottom: 25px;">
+  <button id="btn-tags" class="toggle-btn active" onclick="switchView('tags')">By Tag ({{ site.tags | size }})</button>
+  <button id="btn-months" class="toggle-btn" onclick="switchView('months')">By Month</button>
 </div>
 
 <hr>
 
 <div id="archive-tags-view">
   {% for tag in site.tags %}
-    <h3># {{ tag[0] }} <small style="font-weight: normal; color: #888;">({{ tag[1] | size }})</small></h3>
-    <ul>
-      {% for post in tag[1] %}
-        <li><a href="{{ post.url }}">{{ post.date | date: "%Y-%m-%d" }} - {{ post.title }}</a></li>
-      {% endfor %}
-    </ul>
+    <details class="archive-details">
+      <summary class="archive-summary">
+        <span class="summary-title"># {{ tag[0] }}</span>
+        <span class="summary-count">({{ tag[1] | size }} posts)</span>
+      </summary>
+      <ul class="post-list">
+        {% for post in tag[1] %}
+          <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </details>
   {% endfor %}
 </div>
 
 <div id="archive-months-view" style="display: none;">
-  {% assign postsByMonth = site.posts | group_by_exp: "post", "post.date | date: '%Y-%m'" %}
-  {% for month in postsByMonth %}
-    <h3>{{ month.name }} <small style="font-weight: normal; color: #888;">({{ month.items | size }} )</small></h3>
-    <ul>
-      {% for post in month.items %}
-        <li>
-          <a href="{{ post.url }}">{{ post.title }}</a>
-        </li>
-      {% endfor %}
-    </ul>
+  {% assign postsByYear = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+  
+  {% for year in postsByYear %}
+    <details class="archive-details" {% if forloop.first %}open{% endif %}>
+      <summary class="archive-summary">
+        <span class="summary-title">{{ year.name }}</span>
+        <span class="summary-count">({{ year.items | size }} posts)</span>
+      </summary>
+      
+      <div style="padding-left: 20px; border-left: 1px solid #eee; margin-top: 10px;">
+        {% assign monthsInYear = year.items | group_by_exp: "item", "item.date | date: '%Y-%m'" %}
+        {% for month in monthsInYear %}
+          <h4 class="month-heading">{{ month.name }} <small>({{ month.items | size }})</small></h4>
+          <ul class="post-list">
+            {% for post in month.items %}
+              <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endfor %}
+      </div>
+    </details>
   {% endfor %}
 </div>
 
 <style>
+  /* Toggle Buttons Style */
   .toggle-btn {
-    padding: 6px 15px;
+    padding: 8px 18px;
     cursor: pointer;
-    border: 1px solid #e0e0e0;
-    background: #fafafa;
-    border-radius: 20px; /* 圆角看起来更现代一点 */
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 6px;
     transition: all 0.2s ease;
     font-size: 14px;
-    outline: none;
+    font-weight: 500;
   }
   .toggle-btn.active {
-    background: #3498db; /* 经典蓝色，你可以换成你喜欢的颜色 */
-    color: white;
-    border-color: #3498db;
-    box-shadow: 0 2px 5px rgba(52,152,219,0.3);
+    background: #333; /* Dark theme style */
+    color: #fff;
+    border-color: #333;
   }
-  .toggle-btn:hover {
-    background: #eee;
+
+  /* Folding Style */
+  .archive-details {
+    margin-bottom: 15px;
   }
-  .toggle-btn.active:hover {
-    background: #2980b9;
+  .archive-summary {
+    cursor: pointer;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 4px;
+    list-style: none; /* Hide default arrow in some browsers */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-  h3 {
-    margin-top: 1.5em;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 5px;
+  .archive-summary::-webkit-details-marker {
+    display: none; /* Hide arrow for Safari */
   }
-  ul {
-    list-style-type: none;
-    padding-left: 10px;
+  .archive-summary:hover {
+    background: #f0f0f0;
   }
-  li {
+  .summary-title {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  .summary-count {
+    color: #888;
+    font-size: 0.9em;
+  }
+
+  /* List Style */
+  .post-list {
+    list-style: square;
+    padding-left: 35px;
+    margin-top: 10px;
+  }
+  .post-list li {
     margin-bottom: 8px;
+  }
+  .month-heading {
+    margin: 20px 0 10px 0;
+    color: #555;
+    font-size: 1em;
+    border-bottom: 1px dashed #ddd;
+    display: inline-block;
   }
 </style>
 
