@@ -4,8 +4,8 @@ title: Archive
 ---
 
 <div class="archive-selector" style="margin-bottom: 20px;">
-  <button id="btn-tags" class="toggle-btn active" onclick="switchView('tags')">按标签 ({{ site.tags | size }})</button>
-  <button id="btn-months" class="toggle-btn" onclick="switchView('months')">按月份</button>
+  <button id="btn-tags" class="toggle-btn active" onclick="switchView('tags')">Tag</button>
+  <button id="btn-months" class="toggle-btn" onclick="switchView('months')">Month</button>
 </div>
 
 <hr>
@@ -24,11 +24,10 @@ title: Archive
 <div id="archive-months-view" style="display: none;">
   {% assign postsByMonth = site.posts | group_by_exp: "post", "post.date | date: '%Y-%m'" %}
   {% for month in postsByMonth %}
-    <h3>{{ month.name }} <small style="font-weight: normal; color: #888;">({{ month.items | size }} 篇)</small></h3>
+    <h3>{{ month.name }} <small style="font-weight: normal; color: #888;">({{ month.items | size }} )</small></h3>
     <ul>
       {% for post in month.items %}
         <li>
-          <span style="color: #999; font-family: monospace; margin-right: 10px;">{{ post.date | date: "%d日" }}</span>
           <a href="{{ post.url }}">{{ post.title }}</a>
         </li>
       {% endfor %}
