@@ -15,7 +15,7 @@ title: Archive
     <details class="archive-details">
       <summary class="archive-summary">
         <span class="summary-title"># {{ tag[0] }}</span>
-        <span class="summary-count">({{ tag[1] | size }} posts)</span>
+        <span class="summary-count">({{ tag[1] | size }})</span>
       </summary>
       <ul class="post-list">
         {% for post in tag[1] %}
@@ -33,7 +33,7 @@ title: Archive
     <details class="archive-details" {% if forloop.first %}open{% endif %}>
       <summary class="archive-summary">
         <span class="summary-title">{{ year.name }}</span>
-        <span class="summary-count">({{ year.items | size }} posts)</span>
+        <span class="summary-count">({{ year.items | size }})</span>
       </summary>
       
       <div style="padding-left: 20px; border-left: 1px solid #eee; margin-top: 10px;">
