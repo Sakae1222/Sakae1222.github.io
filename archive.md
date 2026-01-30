@@ -3,7 +3,7 @@ layout: page
 title: Archive
 ---
 
-<div class="archive-selector" style="margin-bottom: 30px; text-align: center;">
+<div class="archive-selector" style="margin-bottom: 30px;">
   <button id="btn-tags" class="toggle-btn active" onclick="switchView('tags')">By Tag</button>
   <button id="btn-months" class="toggle-btn" onclick="switchView('months')">By Month</button>
 </div>
