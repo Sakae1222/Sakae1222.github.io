@@ -84,7 +84,6 @@ title: Archive
   }
   .clean-list li a {
     text-decoration: none;
-    color: #444; /* Slightly softer black for links */
   }
   .clean-list li a:hover {
     color: #000;
