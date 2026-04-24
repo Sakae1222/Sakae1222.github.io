@@ -1,0 +1,133 @@
+---
+layout: default
+title: Search
+---
+
+<h1>Search</h1>
+
+<input
+  type="text"
+  id="search-input"
+  placeholder="Search posts and content..."
+  autofocus
+  style="
+    width: 100%;
+    padding: 8px 0;
+    font-size: 1rem;
+    border: none;
+    border-bottom: 2px solid #000;
+    outline: none;
+    background: transparent;
+    margin-bottom: 2rem;
+    box-sizing: border-box;
+  "
+/>
+
+<div id="search-results"></div>
+
+<script>
+  var posts = [];
+  var input = document.getElementById("search-input");
+  var resultsEl = document.getElementById("search-results");
+
+  // Load the full-text index
+  fetch("/search.json")
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      posts = data;
+
+      // Support ?q= in URL
+      var params = new URLSearchParams(window.location.search);
+      if (params.get("q")) {
+        input.value = params.get("q");
+        search(params.get("q"));
+      } else {
+        resultsEl.innerHTML = "<p style='color:#888;'>Type something to search...</p>";
+      }
+    })
+    .catch(function() {
+      resultsEl.innerHTML = "<p style='color:#888;'>Failed to load search index.</p>";
+    });
+
+  function escapeHtml(str) {
+    return str.replace(/[&<>"']/g, function(c) {
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  }
+
+  // Extract a snippet around the first match in content
+  function getSnippet(content, query) {
+    var idx = content.toLowerCase().indexOf(query.toLowerCase());
+    if (idx === -1) return "";
+    var start = Math.max(0, idx - 60);
+    var end = Math.min(content.length, idx + query.length + 120);
+    var raw = (start > 0 ? "…" : "") + content.slice(start, end) + (end < content.length ? "…" : "");
+    // Highlight the match
+    var escaped = escapeHtml(raw);
+    var re = new RegExp("(" + escapeHtml(query).replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
+    return escaped.replace(re, "<mark style='background:#ff0;padding:0 2px;'>$1</mark>");
+  }
+
+  function highlightTitle(title, query) {
+    var escaped = escapeHtml(title);
+    var re = new RegExp("(" + escapeHtml(query).replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
+    return escaped.replace(re, "<mark style='background:#ff0;padding:0 2px;'>$1</mark>");
+  }
+
+  function search(query) {
+    query = query.trim();
+    resultsEl.innerHTML = "";
+
+    if (query === "") {
+      resultsEl.innerHTML = "<p style='color:#888;'>Type something to search...</p>";
+      return;
+    }
+
+    var q = query.toLowerCase();
+
+    var matched = posts.filter(function(p) {
+      return (
+        p.title.toLowerCase().includes(q) ||
+        (p.tags && p.tags.toLowerCase().includes(q)) ||
+        (p.content && p.content.toLowerCase().includes(q))
+      );
+    });
+
+    if (matched.length === 0) {
+      resultsEl.innerHTML = "<p>No posts found for <strong>" + escapeHtml(query) + "</strong>.</p>";
+      return;
+    }
+
+    var html = "<p style='color:#888; margin-bottom:1.5rem;'>"
+      + matched.length + " post" + (matched.length > 1 ? "s" : "") + " found</p>"
+      + "<ul style='list-style:none; padding:0; margin:0;'>";
+
+    matched.forEach(function(p) {
+      var snippet = getSnippet(p.content || "", query);
+      var matchInTitle = p.title.toLowerCase().includes(q);
+
+      html += "<li style='margin-bottom:1.5rem;'>";
+      html += "<div style='margin-bottom:0.2rem;'>";
+      html += "<span style='color:#888; font-size:0.85rem; margin-right:0.75rem;'>" + p.date + "</span>";
+      html += "<a href='" + p.url + "'>" + highlightTitle(p.title, query) + "</a>";
+      if (p.tags) {
+        html += "<span style='color:#888; font-size:0.8rem; margin-left:0.5rem;'>— " + p.tags + "</span>";
+      }
+      html += "</div>";
+      // Show snippet only when match is in content (not just title)
+      if (snippet && !matchInTitle) {
+        html += "<div style='color:#555; font-size:0.85rem; margin-top:0.3rem; line-height:1.5;'>" + snippet + "</div>";
+      } else if (snippet) {
+        html += "<div style='color:#555; font-size:0.85rem; margin-top:0.3rem; line-height:1.5;'>" + snippet + "</div>";
+      }
+      html += "</li>";
+    });
+
+    html += "</ul>";
+    resultsEl.innerHTML = html;
+  }
+
+  input.addEventListener("input", function() {
+    search(this.value);
+  });
+</script>
