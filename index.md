@@ -4,7 +4,7 @@
 
 <img src="/images/daruma.jpg" alt="Profile" align="right" width="200" style="margin: 0 0 20px 20px;">   <!-- 20251029 tried to add a photo -->
 
-🗾 ![Since](https://img.shields.io/badge/来日-7年目-yellow) 
+🗾 ![Since](https://img.shields.io/badge/来日-8年目-yellow) 
 
 👩‍💼 ![Since](https://img.shields.io/badge/社畜-3年目-green) 
     <!-- 2nd year of my corporate slave life. -->
